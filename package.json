@@ -1,5 +1,5 @@
 {
-  "name": "NoSql-social-network-api",
+  "name": "nosql-social-network-api",
   "version": "1.0.0",
   "description": "An API for a social network that uses a NoSQL database",
   "main": "server.js",
