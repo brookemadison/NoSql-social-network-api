@@ -52,12 +52,14 @@ const userController = {
       })
       .catch(err => res.json(err));
   },
+
   // delete user
   deleteUser({ params }, res) {
     User.findOneAndDelete({ _id: params.id })
       .then(dbUserData => res.json(dbUserData))
       .catch(err => res.json(err));
   },
+
   // puts friend into userId
   addFriend({ params }, res) {
     User.findOneAndUpdate(
@@ -74,6 +76,7 @@ const userController = {
       })
       .catch(err => res.json(err));
   },
+  
   // removes friend from userId
   removeFriend({ params }, res) {
     User.findOneAndUpdate(
