@@ -2,7 +2,7 @@ const { User } = require('../models');
 
 const userController = {
 
-//GET all users
+// get all users
   getAllUsers(req, res) {
     User.find({})
       .populate({
@@ -16,7 +16,7 @@ const userController = {
         res.sendStatus(400);
       });
   },
-  //GET user by id
+  // get user by id
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
       .populate({
@@ -34,13 +34,13 @@ const userController = {
         res.sendStatus(400);
       });
   },
-  //CREATE user
+  // create user
   createUser({ body }, res) {
     User.create(body)
       .then(dbUserData => res.json(dbUserData))
       .catch(err => res.json(err));
   },
-  //UPDATE user by id
+  // update user by id
   updateUser({ params, body }, res) {
     User.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
       .then(dbUserData => {
@@ -52,13 +52,13 @@ const userController = {
       })
       .catch(err => res.json(err));
   },
-  //DELETE user
+  // delete user
   deleteUser({ params }, res) {
     User.findOneAndDelete({ _id: params.id })
       .then(dbUserData => res.json(dbUserData))
       .catch(err => res.json(err));
   },
-  //Puts friend into userId
+  // puts friend into userId
   addFriend({ params }, res) {
     User.findOneAndUpdate(
       { _id: params.userId },
@@ -74,7 +74,7 @@ const userController = {
       })
       .catch(err => res.json(err));
   },
-  //Removes friend from userId
+  // removes friend from userId
   removeFriend({ params }, res) {
     User.findOneAndUpdate(
       { _id: params.userId },
