@@ -52,7 +52,7 @@ A social network API that uses a NoSQL database that can handle large amounts of
 
 # Video Walkthrough
 
-https://user-images.githubusercontent.com/83384131/138627139-7aeaa2fa-a3e1-4654-831a-3781ceed9611.mp4
+https://user-images.githubusercontent.com/83384131/138907046-634916e5-b652-4e47-9804-9323337d3ac8.mp4
 
 ## License
 
