@@ -93,42 +93,34 @@ const thoughtController = {
     },
 
     // delete thought by id
-    deleteThought({
-        params
-    }, res) {
-        Thought.findOneAndDelete({
-                _id: params.id
+    deleteThought({params}, res) {
+        Thoughts.findOneAndDelete(
+            {_id: params.id})
+            .then(deletedThought => {
+                if (!deletedThought) {
+                    return res.status(404).json({message: 'No thought found with this id'});
+                }
+                res.json(deletedThought);
             })
-            .then(dbThoughtData => res.json(dbThoughtData))
-            .catch(err => res.json(err));
+            .catch((err) => res.status(400).json(err));
     },
 
-    // create new reaction by thought id
-    addReaction({
-        body
-    }, res) {
-        Thought.findOneAndUpdate({
-                _id: params.thoughtId
-            }, {
-                $push: {
-                    reactions: body
-                }
-            }, {
-                new: true,
-                runValidators: true
-            })
-            .then(dbThoughtData => {
-                if (!dbThoughtData) {
-                    res.status(404).json({
-                        message: 'No thought found with this id!'
-                    });
+    // add reaction
+      addReaction({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $push: { reactions: body } },
+            { new: true, runValidators: true }
+        )
+            .then(dbData => {
+                if (!dbData) {
+                    res.status(404).json({ message: 'No Thought found with this id!' });
                     return;
                 }
-                res.json(dbThoughtData);
+                res.json(dbData);
             })
             .catch(err => res.json(err));
     },
-
 
     // delete reaction by thought id
     removeReaction({
